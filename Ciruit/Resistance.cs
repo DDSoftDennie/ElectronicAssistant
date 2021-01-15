@@ -12,7 +12,7 @@ namespace Ciruit
 
         public int Resistor { get; set; }
 
-        public void AddResistor(int resistance)
+        public void AddResistorInSeries(int resistance)
         {
             Resistors.Add(resistance);
         }
