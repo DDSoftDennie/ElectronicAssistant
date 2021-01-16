@@ -53,7 +53,7 @@ namespace ElectronicAssistant.Cons
             decimal current;
             decimal resistance;
 
-            Console.WriteLine("Please enter Current in Amps: ");
+            Console.WriteLine("Please enter Current in mA: ");
             decimal.TryParse(Console.ReadLine().ToString(), out current);
             Console.WriteLine("Please enter Resistance in Ohms: ");
             decimal.TryParse(Console.ReadLine().ToString(), out resistance);

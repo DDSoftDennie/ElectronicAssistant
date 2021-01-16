@@ -27,7 +27,7 @@ namespace Circuit
 
         public decimal getVolts()
         {
-            return (Current * Resistance);
+            return (Current * Resistance)/1000;
         }
 
         public decimal getCurrrent(bool mili = false)
