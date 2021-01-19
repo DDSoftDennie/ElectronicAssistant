@@ -31,8 +31,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="OhmsLaw.cs" />
     <Compile Include="Resistance.cs" />
+    <Compile Include="Models\Resistor.cs" />
+    <Compile Include="Models\Circuit.cs" />
+    <Compile Include="Services\OhmsLaw.cs" />
+    <Compile Include="Converters\OhmConvert.cs" />
+    <Compile Include="Converters\AmpConvert.cs" />
+    <Compile Include="Converters\VoltageConvert.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Services\" />
+    <Folder Include="Converters\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

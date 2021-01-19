@@ -1,18 +1,32 @@
 ﻿using System;
-using Circuit;
+using Circuit.Models;
+using Circuit.Services;
+
 
 namespace ElectronicAssistant.Cons
 {
     class MainClass
     {
+        public static Schema schema;
 
         public static void Main(string[] args)
         {
             OhmsLaw ohm = new OhmsLaw();
-            
+
+            schema = new Schema();
+            Resistor r1 = new Resistor("R1", 220, "");
+            Resistor r2 = new Resistor("R2", 330, "");
+
+            schema.Voltage = 5;
+            schema.Resistors.Add(r1);
+            schema.Resistors.Add(r2);
+
+
             
             bool more = true;
             Console.WriteLine("Welcome to ElectronicAssistant");
+
+            Console.WriteLine("Resistance of Schema = " + schema.GetTotalResistance());
             do
             {
                 Console.WriteLine("What do you want to calucalte: Volts (V), Current (I) or Resistance (R)?");
@@ -51,14 +65,11 @@ namespace ElectronicAssistant.Cons
         {
             OhmsLaw ohm = new OhmsLaw();
             decimal current;
-            decimal resistance;
-
             Console.WriteLine("Please enter Current in mA: ");
             decimal.TryParse(Console.ReadLine().ToString(), out current);
-            Console.WriteLine("Please enter Resistance in Ohms: ");
-            decimal.TryParse(Console.ReadLine().ToString(), out resistance);
+          
             ohm.Current = current;
-            ohm.Resistance = resistance;
+            ohm.Resistance = (decimal) schema.GetTotalResistance();
             Console.WriteLine("Voltage: " + ohm.getVolts());
 
         }
@@ -66,15 +77,9 @@ namespace ElectronicAssistant.Cons
         public static void GetCurrent()
         {
             OhmsLaw ohm = new OhmsLaw();
-            decimal voltage;
-            decimal resistance;
             decimal mA;
-            Console.WriteLine("Please enter Voltage in Volts: ");
-            decimal.TryParse(Console.ReadLine().ToString(), out voltage);
-            Console.WriteLine("Please enter Resistance in Ohms: ");
-            decimal.TryParse(Console.ReadLine().ToString(), out resistance);
-            ohm.Voltage = voltage;
-            ohm.Resistance = resistance;
+            ohm.Voltage = (decimal) schema.Voltage ;
+            ohm.Resistance = (decimal) schema.GetTotalResistance();
             mA = ohm.getCurrrent() * 1000;
             Console.WriteLine("Current: " + ohm.getCurrrent() + " Amps or " + mA + " mA, mili Amps");
 
@@ -86,13 +91,12 @@ namespace ElectronicAssistant.Cons
             decimal voltage;
             decimal current;
 
-            Console.WriteLine("Please enter Voltage in Volts: ");
-            decimal.TryParse(Console.ReadLine().ToString(), out voltage);
+            voltage = schema.Voltage;
             Console.WriteLine("Please enter Current in Amps: ");
             decimal.TryParse(Console.ReadLine().ToString(), out current);
             ohm.Voltage = voltage;
             ohm.Current = current;
-            Console.WriteLine("Voltage: " + ohm.getResistance());
+            Console.WriteLine("Resistance: " + ohm.getResistance()*1000);
 
         }
     }
