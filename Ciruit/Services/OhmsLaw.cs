@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Circuit
+namespace Circuit.Services
 {
     public class OhmsLaw
     {
